@@ -43,7 +43,7 @@ def resolve(number_machines, number_jobs, time_job, cost_machine, max_time_machi
 
     problem += LpAffineExpression(el_list)
 
-    for i in range(number_jobs): #0,1
+    for i in range(number_jobs):
         machine_index = 0
         el_list = []
         for j in range(0+i, len(variables_list), number_jobs):
@@ -55,7 +55,7 @@ def resolve(number_machines, number_jobs, time_job, cost_machine, max_time_machi
 
         problem += LpAffineExpression(el_list) == int(time_job[i])
 
-    status = problem.solve(PULP_CBC_CMD(msg=0))
+    status = problem.solve(PULP_CBC_CMD(msg=False))
 
     if status:
         v = problem.variables()
@@ -64,5 +64,3 @@ def resolve(number_machines, number_jobs, time_job, cost_machine, max_time_machi
             if (i+1) % number_jobs == 0:
                 print()
         print(int(value(problem.objective)))
-
-

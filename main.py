@@ -1,5 +1,5 @@
-import sys
 from resolver import *
+
 
 def read_in():
     return [x.strip() for x in sys.stdin]
@@ -59,6 +59,7 @@ def main():
     lines = read_in()
     number_machines, number_jobs, time_job, cost_machine, max_time_machine, jobs_per_machines = resolve_input(lines)
     resolve(number_machines, number_jobs, time_job, cost_machine, max_time_machine, jobs_per_machines)
+
 
 if __name__ == "__main__":
     main()
