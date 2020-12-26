@@ -10,11 +10,6 @@ def define_variables(number_machines, number_jobs, max_time):
     return var_dictionary
 
 
-def generate_max_time(max_time_machine):
-    for m in max_time_machine:
-        yield m
-
-
 def resolve(number_machines, number_jobs, time_job, cost_machine, max_time_machine, jobs_per_machines):
     variables_limits = define_variables(number_machines, number_jobs, max_time_machine)
     variables_list = list()
@@ -32,7 +27,8 @@ def resolve(number_machines, number_jobs, time_job, cost_machine, max_time_machi
             acc = None
         acc += variables_list[i]
 
-    problem += acc <= max_time_machine[count]
+    if len(max_time_machine) > count:
+        problem += acc <= max_time_machine[count]
 
     el_list = []
     count = 0
@@ -60,7 +56,7 @@ def resolve(number_machines, number_jobs, time_job, cost_machine, max_time_machi
     if status:
         v = problem.variables()
         for i in range(len(v)):
-            print(int(v[i].varValue), end=" ")
+            print(v[i].varValue, end=" ")
             if (i+1) % number_jobs == 0:
                 print()
-        print(int(value(problem.objective)))
+        print(value(problem.objective))
