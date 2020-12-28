@@ -20,6 +20,7 @@ venv: $(VENV)/bin/activate
 
 clean:
 	rm -rf $(VENV)
+	rm tarefas
 	find . -type f -name '*.pyc' -delete
 
 .PHONY: all venv clean
