@@ -8,6 +8,10 @@ $(VENV)/bin/activate: requirements.txt
 	virtualenv -p python3 $(VENV)
 	. $(PWD)/$(VENV)/bin/activate
 	./$(VENV)/bin/pip3 install -r requirements.txt
+	touch tarefas
+	echo "#!/bin/sh" >> tarefas
+	echo ". venv/bin/activate" >> tarefas
+	echo "python3 ./src/main.py" >> tarefas
 	chmod +x $(PWD)/src/main.py
 	chmod +x $(PWD)/tarefas
 
