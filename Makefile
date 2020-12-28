@@ -5,7 +5,8 @@ VENV := venv
 all: venv
 
 $(VENV)/bin/activate: requirements.txt
-	virtualenv -p python3 $(VENV) 
+	virtualenv -p python3 $(VENV)
+	. $(PWD)/$(VENV)/bin/activate
 	./$(VENV)/bin/pip3 install -r requirements.txt
 	chmod +x $(PWD)/src/main.py
 	chmod +x $(PWD)/tarefas
